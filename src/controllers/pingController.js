@@ -6,8 +6,8 @@ module.exports.ping = (req, res) => {
 
     try {
         connection.query(consult, (err, results)=>{
-            console.log(results)
-            res.json(results)
+            console.log("Ping al Backend OK y base de datos OK")
+            res.json("Ping al Backend OK y base de datos OK")
         });
 
     } catch (e) {

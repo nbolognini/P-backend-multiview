@@ -1,4 +1,4 @@
-CREATE DATABASE multiview,
+CREATE DATABASE multiview;
 USE multiview;
 
 CREATE TABLE login(
@@ -9,8 +9,8 @@ primary key(username, password)
 );
 
 INSERT INTO login (username, password, role) VALUES
-('usuario1', 'clave1', 'usuario'),
-('usuario2', 'clave2', 'usuario'),
-('usuario3', 'clave3', 'usuario'),
-('sistemas26', 'sistemas26', 'superusuario'),
-('admin', 'admin', 'admin');
+('janibarro', 'abcd1234', 'usuario'),
+('naldao', 'abcd1234', 'usuario'),
+('nbolognini', 'abcd1234', 'usuario'),
+('sistemas26', 'abcd1234', 'superusuario'),
+('admin', 'admin', 'administrador');
