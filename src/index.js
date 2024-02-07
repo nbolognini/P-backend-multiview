@@ -14,23 +14,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', routes);
 
 
-
-
-// Agregado:
-const options = {
-    key: fs.readFileSync('etc/nginx/clave.privada.key'),
-    cert: fs.readFileSync('etc/nginx/clave.certificado.crt')
-};
-
-https.createServer(options, app).listen(port, () => {
-    console.log(`Server listening on port ${port}`);
-});
-// Hasta ACA
+// ESCUCHA POR HTTPS:
+//const options = {
+//    key: fs.readFileSync('/etc/nginx/telecentro.net.ar.key'),
+//    cert: fs.readFileSync('/etc/nginx/telecentro.net.ar.crt')
+//};
+//https.createServer(options, app).listen(port, () => {
+//    console.log(`Server listening on port ${port}`);
+//});
 
 
 
-
-
+ //ESCUCHA POR HTTP:
 app.listen(port, () => {    
     console.log(`Example app listening at http://localhost:${port}`);
 });
