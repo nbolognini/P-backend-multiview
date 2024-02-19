@@ -1,7 +1,7 @@
 
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-    host: '192.168.0.27',
+    host: '192.168.0.29',
     user: 'root',
     password: 'eclipse',
     database: 'multiview'
