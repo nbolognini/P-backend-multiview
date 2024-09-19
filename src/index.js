@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', routes);
 
 
+<<<<<<< HEAD
 
 
 // *********************Agregado (SACADO PARA DESARROLLO), :*********************
@@ -34,6 +35,20 @@ app.use('/', routes);
 
 
 // Descomedntar para desarrollo
+=======
+// ESCUCHA POR HTTPS:
+//const options = {
+//    key: fs.readFileSync('/etc/nginx/telecentro.net.ar.key'),
+//    cert: fs.readFileSync('/etc/nginx/telecentro.net.ar.crt')
+//};
+//https.createServer(options, app).listen(port, () => {
+//    console.log(`Server listening on port ${port}`);
+//});
+
+
+
+ //ESCUCHA POR HTTP:
+>>>>>>> 6881163b3b681ce393c95c3c2a37b2f7e4a114f5
 app.listen(port, () => {    
     console.log(`Example app listening at http://localhost:${port}`);
 });
