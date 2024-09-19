@@ -3,7 +3,6 @@ const https = require('https');
 const fs = require('fs');
 const app = express();
 const port = 3000;
-const portSSL = 3001;
 const routes = require('./api/endPoints');
 const cors = require('cors');
 
@@ -19,21 +18,21 @@ app.use('/', routes);
 
 
 
-// *********************Agregado (SACADO PARA DESARROLLO), :*********************
-//const options = {
-//    key: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.key'),
-//    cert: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.crt')
-//};
+// Agregado:
+const options = {
+    key: fs.readFileSync('/etc/nginx/ssl/clave.privada.key'), 
+    cert: fs.readFileSync('/etc/nginx/ssl/clave.certificado.crt')
+};
 
-//https.createServer(options, app).listen(port, () => {
-//    console.log(`Server listening on port ${port}`);
-//});
+https.createServer(options, app).listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+});
 // Hasta ACA
 
 
 
 
-// Descomedntar para desarrollo
+
 app.listen(port, () => {    
     console.log(`Example app listening at http://localhost:${port}`);
 });

@@ -20,20 +20,20 @@ app.use('/', routes);
 
 
 // *********************Agregado (SACADO PARA DESARROLLO), :*********************
-//const options = {
-//    key: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.key'),
-//    cert: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.crt')
-//};
+const options = {
+    key: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.key'),
+    cert: fs.readFileSync('/etc/nginx/ssl/telecentro.net.ar.crt')
+};
 
-//https.createServer(options, app).listen(port, () => {
-//    console.log(`Server listening on port ${port}`);
-//});
+https.createServer(options, app).listen(port, () => {
+    console.log(`Server listening on port ${port}`);
+});
 // Hasta ACA
 
 
 
 
-// Descomedntar para desarrollo
-app.listen(port, () => {    
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+
+//app.listen(port, () => {    
+//    console.log(`Example app listening at http://localhost:${port}`);
+//});
