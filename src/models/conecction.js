@@ -1,14 +1,17 @@
 
 const mysql = require('mysql');
+require('dotenv').config(); // Cargar variables de entorno desde .env
+
 let connection;
 
 function handleDisconnect() {
     connection = mysql.createConnection({
-        host: '192.168.227.156',
-        user: 'root',
-        password: 'eclipse',
-        database: 'multiview',
-        connectTimeout: 10000
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE,
+        //paso a INT el string que viene en el .env
+        connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT)
     });
 
     connection.connect(function (error) {
