@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const { ping } = require('../controllers/pingController');
 const { login } = require('../controllers/loginController');
 const { validate } = require('../controllers/validateController');
@@ -7,6 +8,8 @@ const { signals } = require('../controllers/signalsController');
 const { multiview } = require('../controllers/multiviewController');
 const { signal } = require('../controllers/signalController');
 const { getChannelAndSignal } = require('../controllers/getChannelAndSignal');
+const { imageLogo } = require('../controllers/imageLogoController');
+
 
 router.get('/ping', ping);
 
@@ -26,6 +29,8 @@ router.post('/multiview', multiview);
 router.post('/signal', signal);
 
 router.post('/getChannelAndSignal', getChannelAndSignal);
+
+router.post('/imageLogo', imageLogo);
 
 //Tenemos que exportar nuestro modulo para que pueda ser utilizado en otro archivo
 module.exports = router;

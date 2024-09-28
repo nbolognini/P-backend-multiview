@@ -6,14 +6,22 @@ const port = 3000;
 const portSSL = 3001;
 const routes = require('./api/endPoints');
 const cors = require('cors');
+const path = require('path'); // Importar path
+
+
 
 app.use(cors( { origin: "*",  
                 methods: ["GET", "POST"],
 } ));
 
+// Configurar express.static para servir archivos estáticos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Agregar las rutas de nuestro archivo endPoints.js
 app.use('/', routes);
 
 //<<<<<<< HEAD

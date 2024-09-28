@@ -18,7 +18,7 @@ module.exports.multiview = (req, res) => {
         JOIN groups g ON m.fk_group_id = g.group_id
         JOIN signals s ON m.fk_channel_id = s.fk_channel_id AND m.signal_type = s.signal_type
         JOIN channels c ON m.fk_channel_id = c.channel_id
-        WHERE m.fk_group_id = ? 
+        WHERE m.fk_group_id = ?
           AND g.group_status = 1
           AND m.multiview_status = 1
           AND s.signal_status = 1
