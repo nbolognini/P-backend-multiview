@@ -1,18 +1,8 @@
 const connection = require('../models/conecction');
 
 module.exports.getChannelAndSignal = (req, res) => {
-    // Desestructurar el objeto req.body para obtener el user_name_id
-    const { user_name_id } = req.body;
-    
-    console.log('Intentando acceder a /getChannelAndSignal');
-    // Verificar el estado de la conexión
-    if (connection.state === 'disconnected') {
-        console.log('La conexión a la base de datos está cerrada.');
-        res.status(500).send('Internal Server Error: DB connection closed');
-        return;
-    }
+    const userNameId = req.body.user_name_id;
 
-    // Consulta SQL de un solo paso
     const query = `
         SELECT c.channel_id, c.channel_name, m.signal_type, s.signal_url, m.multiview_order
         FROM users u
@@ -27,21 +17,29 @@ module.exports.getChannelAndSignal = (req, res) => {
         AND s.signal_status = 1
         AND c.channel_status = 1
         ORDER BY m.multiview_order
-`;
+    `;
 
-    connection.query(query, [user_name_id], (err, rows) => {
-        if (err) {
-            console.error('Error querying database:', err); // Mostrar el error específico
-            res.status(500).send('Error querying database');
+    connection.ping((pingErr) => {
+        if (pingErr) {
+            console.error('Error pinging database:', pingErr);
+            res.status(500).send('Error pinging database');
             return;
         }
 
-        if (rows.length === 0) {
-            res.status(404).send('No entries found for the given user');
-            return;
-        }
+        connection.query(query, [userNameId], (err, rows) => {
+            if (err) {
+                console.error('Error querying database:', err); // Mostrar el error específico
+                res.status(500).send('Error querying database');
+                return;
+            }
 
-        console.log('Consulta realizada con éxito:', rows.length);
-        res.json(rows); // Enviar array con resultados como respuesta en formato JSON
+            if (rows.length === 0) {
+                res.status(404).send('No entries found for the given user');
+                return;
+            }
+
+            console.log('Consulta realizada con éxito:', rows.length);
+            res.json(rows); // Enviar array con resultados como respuesta en formato JSON
+        });
     });
 };

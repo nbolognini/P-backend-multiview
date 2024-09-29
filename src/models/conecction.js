@@ -1,4 +1,3 @@
-
 const mysql = require('mysql');
 require('dotenv').config(); // Cargar variables de entorno desde .env
 
@@ -10,8 +9,7 @@ function handleDisconnect() {
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
-        //paso a INT el string que viene en el .env
-        connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT)
+        connectTimeout: parseInt(process.env.DB_CONNECT_TIMEOUT, 10)
     });
 
     connection.connect(function (error) {
@@ -31,6 +29,18 @@ function handleDisconnect() {
             throw error;
         }
     });
+
+    // Mantener la conexión activa enviando un ping cada 5 minutos
+    setInterval(() => {
+        connection.ping((err) => {
+            if (err) {
+                console.error('Error pinging database:', err);
+                handleDisconnect(); // Reconectar si el ping falla
+            } else {
+                console.log('Ping a la base de datos exitoso');
+            }
+        });
+    }, 300000); // 300000 ms = 5 minutos
 }
 
 handleDisconnect();
