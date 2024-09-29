@@ -38,6 +38,7 @@ module.exports.validate = (req, res) => {
         });
     } catch (e) {  
         // manejar el errorrrr
+        return res.send(undefined);
     }
 }
 
