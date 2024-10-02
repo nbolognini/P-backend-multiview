@@ -7,7 +7,7 @@ const portSSL = 3001;
 const routes = require('./api/endPoints');
 const cors = require('cors');
 const path = require('path'); // Importar path
-
+require('dotenv').config();
 
 
 app.use(cors( { origin: "*",  
@@ -44,6 +44,6 @@ app.use('/', routes);
 
 
  //ESCUCHA POR HTTP:
-app.listen(port, () => {    
-    console.log(`Example app listening at http://localhost:${port}`);
+ app.listen(port, () => {
+    console.log(`Servidor escuchando en el puerto ${port}`);
 });
